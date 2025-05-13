@@ -3,10 +3,18 @@ import { RouterOutlet } from '@angular/router';
 import { HelloComponent } from './hello/hello.component';
 import { NameDisplayerComponent } from './name-displayer/name-displayer.component';
 import { ParentComponent } from './parent/parent.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { DollarConverterComponent } from './dollar-converter/dollar-converter.component';
 
 @Component({
   selector: 'app-root',
-  imports: [HelloComponent, NameDisplayerComponent, ParentComponent],
+  imports: [
+    HelloComponent,
+    NameDisplayerComponent,
+    ParentComponent,
+    WelcomeComponent,
+    DollarConverterComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
