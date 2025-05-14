@@ -14,6 +14,6 @@ export class DollarConverterComponent {
   total: null | number = null;
 
   convertToDollars() {
-    return (this.total = this.amount * this.rate);
+    return (this.total = this.amount * this.rate).toFixed(2);
   }
 }
