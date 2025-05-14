@@ -5,6 +5,7 @@ import { NameDisplayerComponent } from './name-displayer/name-displayer.componen
 import { ParentComponent } from './parent/parent.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { DollarConverterComponent } from './dollar-converter/dollar-converter.component';
+import { UsersComponent } from './users/users.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { DollarConverterComponent } from './dollar-converter/dollar-converter.co
     ParentComponent,
     WelcomeComponent,
     DollarConverterComponent,
+    UsersComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
