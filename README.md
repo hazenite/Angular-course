@@ -1,4 +1,6 @@
-# AgnularCourse
+I'm the process of learning Angular from the course on Udemy :)
+
+# Angular Course
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.§
 
