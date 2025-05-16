@@ -6,6 +6,7 @@ import { ParentComponent } from './parent/parent.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { DollarConverterComponent } from './dollar-converter/dollar-converter.component';
 import { UsersComponent } from './users/users.component';
+import { GrandparentComponent } from './grandparent/grandparent.component';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { UsersComponent } from './users/users.component';
     WelcomeComponent,
     DollarConverterComponent,
     UsersComponent,
+    GrandparentComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
