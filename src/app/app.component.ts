@@ -7,6 +7,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { DollarConverterComponent } from './dollar-converter/dollar-converter.component';
 import { UsersComponent } from './users/users.component';
 import { GrandparentComponent } from './grandparent/grandparent.component';
+import { RandomNumberButtonComponent } from './random-number-button/random-number-button.component';
+import { RandomNumbersComponent } from './random-numbers/random-numbers.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +20,8 @@ import { GrandparentComponent } from './grandparent/grandparent.component';
     DollarConverterComponent,
     UsersComponent,
     GrandparentComponent,
+    RandomNumberButtonComponent,
+    RandomNumbersComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

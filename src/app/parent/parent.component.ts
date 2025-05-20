@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ChildComponent } from '../child/child.component';
 
 @Component({
@@ -9,6 +9,8 @@ import { ChildComponent } from '../child/child.component';
 })
 export class ParentComponent {
   value: null | number = null;
+
+  @Output() handleNewValue3 = new EventEmitter<string>();
 
   value2: number = 10;
 
@@ -28,5 +30,8 @@ export class ParentComponent {
 
   handleCustomEvent(value: { title: string; description: string }) {
     console.log(value);
+  }
+  handleNewValue2(value: string) {
+    this.handleNewValue3.emit(value);
   }
 }

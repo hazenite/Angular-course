@@ -7,12 +7,17 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './child.component.scss',
 })
 export class ChildComponent {
-  @Input()
-  random: null | number = null;
+  @Input() random: null | number = null;
   @Input() callback!: (newValue: number) => void;
 
   @Output()
   onNewValue = new EventEmitter<number>();
+
+  @Output() onNewValue2 = new EventEmitter<string>();
+
+  emitNewValue2() {
+    this.onNewValue2.emit('Lorem Ipsum ');
+  }
 
   @Output() onCustomEvent = new EventEmitter<{
     title: string;
