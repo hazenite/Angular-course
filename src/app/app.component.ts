@@ -9,19 +9,22 @@ import { UsersComponent } from './users/users.component';
 import { GrandparentComponent } from './grandparent/grandparent.component';
 import { RandomNumberButtonComponent } from './random-number-button/random-number-button.component';
 import { RandomNumbersComponent } from './random-numbers/random-numbers.component';
+import { CarComponent } from './car/car.component';
+import { CarsComponent } from './cars/cars.component';
 
 @Component({
   selector: 'app-root',
   imports: [
-    HelloComponent,
-    NameDisplayerComponent,
-    ParentComponent,
-    WelcomeComponent,
-    DollarConverterComponent,
-    UsersComponent,
-    GrandparentComponent,
-    RandomNumberButtonComponent,
-    RandomNumbersComponent,
+    // HelloComponent,
+    // NameDisplayerComponent,
+    // ParentComponent,
+    // WelcomeComponent,
+    // DollarConverterComponent,
+    // UsersComponent,
+    // GrandparentComponent,
+    // RandomNumberButtonComponent,
+    // RandomNumbersComponent,
+    CarsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
