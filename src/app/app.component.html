@@ -101,3 +101,14 @@
         <div>...</div>
     }
 
+
+
+    @defer (on timer(5s)) {
+<app-lazy/>
+    } @placeholder {
+        <p> Iam a placeholder</p>
+    } 
+    @loading (minimum 1s){
+        <p> Iam a loading message </p>
+
+    }

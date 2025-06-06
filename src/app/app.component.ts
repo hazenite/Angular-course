@@ -13,6 +13,7 @@ import { CarComponent } from './car/car.component';
 import { CarsComponent } from './cars/cars.component';
 import { NgIf, NgFor, NgClass, NgStyle } from '@angular/common';
 import { FooComponent } from './foo/foo.component';
+import { LazyComponent } from './lazy/lazy.component';
 
 type Box = {
   r: number;
@@ -42,6 +43,7 @@ type Box = {
     NgClass,
     NgStyle,
     FooComponent,
+    LazyComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
