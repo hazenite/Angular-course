@@ -9,3 +9,28 @@ h1 {
     font-weight: bold;
 
 }
+
+
+
+.is-active {
+    background: red;
+} 
+
+.is-logged-in {
+    font-size: 30px;
+}
+
+.long-list {
+    height: 1000px;
+}
+
+.box-container {
+    position: relative;
+    width: 100vw;
+    height: 80vh;
+}
+
+.box {
+    position: absolute;
+    transform: translate(-50%, -50%)
+}

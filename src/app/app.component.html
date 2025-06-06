@@ -20,4 +20,84 @@
 <!-- <app-grandparent></app-grandparent>
 <app-random-numbers></app-random-numbers> -->
 
-<app-cars></app-cars>
+<!-- <app-cars></app-cars> -->
+
+<button (click) = "addBox()"> Add new box </button>
+<div class="box-container">
+@for(box of boxses; track $index) {
+<div class="box" [style]="getStyles2(box)"></div>
+}
+</div>
+
+
+@defer(on timer(5s))  {
+    <app-foo/>
+    }
+
+<div *ngIf="shouldBeVisable">Lorem ipsum </div>
+
+
+@switch (isLogged) {
+    @case (true) {
+        <h1> You are logged in </h1>
+    }
+    @case(false) {
+        <h1> You are not logg in </h1>
+    }
+    @default {
+        <h1>  Unknows state </h1>
+    }
+}
+
+
+@if(shouldBeVisable) {
+    <div> Lorem Pusum</div>
+}
+
+@else {
+    <div> network </div>
+}
+
+
+
+<!-- 
+<ul>
+    <li *ngFor="let value of values">
+     {{ value }}
+    </li>
+
+  
+   @for(user of users; track user.id) {
+       <li *ngFor="let user of users; trackBy: trackUsersFn">
+        {{ user.name }} {{ $index }} {{ $first }} {{formatOdd($odd) }} {{ $count }} 
+       </li>
+    }
+</ul>
+<ul class="long-list">
+  <li *ngFor="let user of users; trackBy: trackUsersFn">
+        {{ user.name }}
+       </li>
+</ul> -->
+
+
+
+
+
+@defer (on timer(5s)) {
+
+<div [class] = "{ 'is-active': isActive, 'is-logged-in': isLogged}" 
+[style]="getStyles()"
+[class.lorem-ipsum] = "true" [style.font-weight] = "900">  
+    
+    I should(or not) have is-active class </div>
+
+
+}
+
+
+    @defer (on viewport) {
+        <div> Loream Ipsum</div>
+    } @placeholder {  
+        <div>...</div>
+    }
+
