@@ -8,6 +8,7 @@ h1 {
     color: $primary-color;
     font-weight: bold;
 
+
 }
 
 
@@ -28,9 +29,16 @@ h1 {
     position: relative;
     width: 100vw;
     height: 80vh;
+    z-index: 1000;
+
 }
 
 .box {
     position: absolute;
     transform: translate(-50%, -50%)
+}
+
+.container {
+  position: relative;
+  background-color: red;
 }

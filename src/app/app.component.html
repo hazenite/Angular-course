@@ -1,3 +1,17 @@
+
+
+<div class="container">
+    @if(coords.length < 10) {
+<app-crazy-box (onNewPosition)="handlewNewPosition($event)"/>
+    }
+<ul>
+
+    @for(item of coords; track $index) {
+        <li> X: {{item.x}}, Y: {{item.y}}px</li>
+    }
+</ul>
+
+</div>
 <!-- <h1>Hello World</h1>
 <app-hello [name]="getName()" [users]="users" [amount]="5"></app-hello>
 
@@ -21,15 +35,13 @@
 <app-random-numbers></app-random-numbers> -->
 
 <!-- <app-cars></app-cars> -->
-
+<!-- 
 <button (click) = "addBox()"> Add new box </button>
 <div class="box-container">
 @for(box of boxses; track $index) {
 <div class="box" [style]="getStyles2(box)"></div>
 }
-</div>
-
-
+</div>  
 @defer(on timer(5s))  {
     <app-foo/>
     }
@@ -56,7 +68,7 @@
 
 @else {
     <div> network </div>
-}
+} -->
 
 
 
@@ -82,33 +94,25 @@
 
 
 
-
+<!-- 
 @defer (on timer(5s)) {
 
-<div [class] = "{ 'is-active': isActive, 'is-logged-in': isLogged}" 
+<div [class] = "{'is-active': isActive, 'is-logged-in': isLogged}" 
 [style]="getStyles()"
 [class.lorem-ipsum] = "true" [style.font-weight] = "900">  
-    
-    I should(or not) have is-active class </div>
-
-
+     I should(or not) have is-active class </div>
 }
-
-
     @defer (on viewport) {
         <div> Loream Ipsum</div>
     } @placeholder {  
         <div>...</div>
     }
 
-
-
     @defer (on timer(5s)) {
-<app-lazy/>
+    <app-lazy/>
     } @placeholder {
         <p> Iam a placeholder</p>
     } 
     @loading (minimum 1s){
         <p> Iam a loading message </p>
-
-    }
+    } -->

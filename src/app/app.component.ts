@@ -14,6 +14,8 @@ import { CarsComponent } from './cars/cars.component';
 import { NgIf, NgFor, NgClass, NgStyle } from '@angular/common';
 import { FooComponent } from './foo/foo.component';
 import { LazyComponent } from './lazy/lazy.component';
+import { CrazyBoxComponent } from './crazy-box/crazy-box.component';
+import { Coords } from './types';
 
 type Box = {
   r: number;
@@ -44,11 +46,13 @@ type Box = {
     NgStyle,
     FooComponent,
     LazyComponent,
+    CrazyBoxComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  coords: Coords[] = [];
   boxses: Box[] = [];
 
   isLogged: boolean | null = null;
@@ -107,5 +111,9 @@ export class AppComponent {
       left: `${box.x}px`,
       top: `${box.y}px`,
     };
+  }
+
+  handlewNewPosition(coords: Coords) {
+    this.coords.push(coords);
   }
 }
