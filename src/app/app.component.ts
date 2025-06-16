@@ -16,6 +16,10 @@ import { FooComponent } from './foo/foo.component';
 import { LazyComponent } from './lazy/lazy.component';
 import { CrazyBoxComponent } from './crazy-box/crazy-box.component';
 import { Coords } from './types';
+import { ContainerComponent } from './container/container.component';
+import { TitleComponent } from './title/title.component';
+import { ConditionalContentComponent } from './conditional-content/conditional-content.component';
+import { SnartComponentComponent } from './snart-component/snart-component.component';
 
 type Box = {
   r: number;
@@ -47,6 +51,10 @@ type Box = {
     FooComponent,
     LazyComponent,
     CrazyBoxComponent,
+    ContainerComponent,
+    TitleComponent,
+    ConditionalContentComponent,
+    SnartComponentComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -115,5 +123,11 @@ export class AppComponent {
 
   handlewNewPosition(coords: Coords) {
     this.coords.push(coords);
+  }
+
+  visible = false;
+
+  toggleVisability() {
+    this.visible = !this.visible;
   }
 }

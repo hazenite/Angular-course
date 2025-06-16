@@ -1,6 +1,30 @@
 
 
-<div class="container">
+
+
+<app-conditional-content>
+    @if(visible) {
+<app-snart-component> </app-snart-component>
+    }
+</app-conditional-content>
+<button (click)="toggleVisability()">Toggle</button>
+<!-- 
+<app-container>
+    <app-title ngProjectAs="p" title = "Magda Magda"/>
+    <h1>Test</h1>
+
+    <p>Test 2 </p>
+
+    <p> Test 3 </p>
+
+    <span sidebar> I am sidebar content </span>
+    <p class="footer"> I am a footer paragraph</p>
+    <div class = "footer">
+        <p> Iam footer content </p>
+    </div>
+</app-container> -->
+
+<!-- <div class="container">
     @if(coords.length < 10) {
 <app-crazy-box (onNewPosition)="handlewNewPosition($event)"/>
     }
@@ -11,7 +35,7 @@
     }
 </ul>
 
-</div>
+</div> -->
 <!-- <h1>Hello World</h1>
 <app-hello [name]="getName()" [users]="users" [amount]="5"></app-hello>
 
