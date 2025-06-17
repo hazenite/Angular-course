@@ -20,6 +20,9 @@ import { ContainerComponent } from './container/container.component';
 import { TitleComponent } from './title/title.component';
 import { ConditionalContentComponent } from './conditional-content/conditional-content.component';
 import { SnartComponentComponent } from './snart-component/snart-component.component';
+import { PageTitleComponent } from './page-title/page-title.component';
+import { PageContainerComponent } from './page-container/page-container.component';
+import { PageBodyComponent } from './page-body/page-body.component';
 
 type Box = {
   r: number;
@@ -55,6 +58,10 @@ type Box = {
     TitleComponent,
     ConditionalContentComponent,
     SnartComponentComponent,
+    PageTitleComponent,
+    PageContainerComponent,
+    PageBodyComponent,
+    ContainerComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
