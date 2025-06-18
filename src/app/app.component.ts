@@ -23,6 +23,8 @@ import { SnartComponentComponent } from './snart-component/snart-component.compo
 import { PageTitleComponent } from './page-title/page-title.component';
 import { PageContainerComponent } from './page-container/page-container.component';
 import { PageBodyComponent } from './page-body/page-body.component';
+import { HomeworkComponentComponent } from './homework-component/homework-component.component';
+import { PageLayoutComponent } from './page-layout/page-layout.component';
 
 type Box = {
   r: number;
@@ -62,6 +64,8 @@ type Box = {
     PageContainerComponent,
     PageBodyComponent,
     ContainerComponent,
+    HomeworkComponentComponent,
+    PageLayoutComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

@@ -1,4 +1,4 @@
-<app-page-container>
+<!-- <app-page-container>
     <app-page-title title = "Hello World"/>
         <app-page-body>
             Lorem ipsum, dolor sit
@@ -8,10 +8,31 @@
 <app-container>
     <h1> Title </h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique harum eaque dolorum corrupti eum eligendi ex recusandae quis animi? Expedita quo rem ducimus impedit harum saepe fuga ipsum voluptatum quibusdam.</p>
-</app-container>
+</app-container> -->
 
-<!-- 
-<app-container>
+<app-page-layout>
+    <div class="all">
+    <h1 ngProjectAs="[header]" class="header">something</h1>
+    <h2 ngProjectAs="[footer]" class = "footer">  footer </h2>
+    </div>
+</app-page-layout>
+
+<app-homework-component>
+    <h1 ngProjectAs = "[third]">
+     bla a
+    </h1>
+
+    <h2 second>
+     bla 2
+    </h2>
+    <h3 ngProjectAs = "[first]">
+     bla 3
+    </h3>
+</app-homework-component>
+
+
+
+<!-- <app-container>
     <app-title ngProjectAs="p" title = "Magda Magda"/>
     <h1>Test</h1>
 
