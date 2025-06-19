@@ -25,6 +25,7 @@ import { PageContainerComponent } from './page-container/page-container.componen
 import { PageBodyComponent } from './page-body/page-body.component';
 import { HomeworkComponentComponent } from './homework-component/homework-component.component';
 import { PageLayoutComponent } from './page-layout/page-layout.component';
+import { MyIpComponent } from './my-ip/my-ip.component';
 
 type Box = {
   r: number;
@@ -38,35 +39,7 @@ type Box = {
 
 @Component({
   selector: 'app-root',
-  imports: [
-    // HelloComponent,
-    // NameDisplayerComponent,
-    // ParentComponent,
-    // WelcomeComponent,
-    // DollarConverterComponent,
-    // UsersComponent,
-    // GrandparentComponent,
-    // RandomNumberButtonComponent,
-    // RandomNumbersComponent,
-    // CarsComponent,
-    NgIf,
-    NgFor,
-    NgClass,
-    NgStyle,
-    FooComponent,
-    LazyComponent,
-    CrazyBoxComponent,
-    ContainerComponent,
-    TitleComponent,
-    ConditionalContentComponent,
-    SnartComponentComponent,
-    PageTitleComponent,
-    PageContainerComponent,
-    PageBodyComponent,
-    ContainerComponent,
-    HomeworkComponentComponent,
-    PageLayoutComponent,
-  ],
+  imports: [MyIpComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
