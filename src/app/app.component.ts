@@ -71,6 +71,10 @@ type Box = {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  visible: boolean = true;
+  usersOne: string[] = ['Marcin'];
+
+  value = 'lorem ipsumik';
   coords: Coords[] = [];
   boxses: Box[] = [];
 
@@ -88,9 +92,23 @@ export class AppComponent {
     { id: 2, name: 'Magda' },
   ];
 
+  toggleVisablity() {
+    this.visible = !this.visible;
+  }
+
+  addUsers() {
+    // this.usersOne.push((Math.random() * 100000).toFixed(2));
+    this.usersOne = [...this.usersOne, (Math.random() * 100000).toFixed(2)];
+  }
+
+  changeValue() {
+    this.value = 'Inna wartosc';
+  }
+
   getName() {
     return 'Lorem ipsum z metody getName w appComponent';
   }
+
   trackUsersFn(index: number, user: { id: number; name: string }) {
     console.log('TRACK', index, user);
     return user.id;
@@ -134,11 +152,5 @@ export class AppComponent {
 
   handlewNewPosition(coords: Coords) {
     this.coords.push(coords);
-  }
-
-  visible = false;
-
-  toggleVisability() {
-    this.visible = !this.visible;
   }
 }
