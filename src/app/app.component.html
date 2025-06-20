@@ -1,6 +1,11 @@
 
 
-<app-my-ip></app-my-ip>
+@if (visible) {
+<app-title></app-title>
+}
+<button (click) = "toggleVisablity()"> toggle visability </button> 
+
+<!-- <app-my-ip></app-my-ip> -->
 
 <!-- 
 @if (visible) {

@@ -39,7 +39,7 @@ type Box = {
 
 @Component({
   selector: 'app-root',
-  imports: [MyIpComponent],
+  imports: [MyIpComponent, TitleComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
