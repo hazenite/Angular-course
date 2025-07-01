@@ -1,9 +1,14 @@
-
-
-@if (visible) {
+<button (click) = "toggleVisablity()"> toggle visability </button> 
+ @if (visible) {
+<app-lifecycletester [myChange] = 2></app-lifecycletester>
+}
+<!-- @if (visible) {<
 <app-title></app-title>
 }
+
+
 <button (click) = "toggleVisablity()"> toggle visability </button> 
+<button (click) = "toggleVisablity()"> Change counter </button>  -->
 
 <!-- <app-my-ip></app-my-ip> -->
 

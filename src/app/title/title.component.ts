@@ -1,4 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChange,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-title',
@@ -6,7 +14,10 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
   templateUrl: './title.component.html',
   styleUrl: './title.component.scss',
 })
-export class TitleComponent implements OnInit, OnDestroy {
+export class TitleComponent implements OnInit, OnDestroy, OnChanges {
+  changeVisability() {
+    throw new Error('Method not implemented.');
+  }
   @Input() title: string = '';
   visible: boolean = true;
 
@@ -24,6 +35,10 @@ export class TitleComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log('zniszczono');
     clearInterval(this.interval);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('blabla', SimpleChange);
   }
 
   toggleVisablity() {

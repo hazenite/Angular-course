@@ -26,6 +26,7 @@ import { PageBodyComponent } from './page-body/page-body.component';
 import { HomeworkComponentComponent } from './homework-component/homework-component.component';
 import { PageLayoutComponent } from './page-layout/page-layout.component';
 import { MyIpComponent } from './my-ip/my-ip.component';
+import { LifecycletesterComponent } from './lifecycletester/lifecycletester.component';
 
 type Box = {
   r: number;
@@ -39,12 +40,12 @@ type Box = {
 
 @Component({
   selector: 'app-root',
-  imports: [MyIpComponent, TitleComponent],
+  imports: [MyIpComponent, TitleComponent, LifecycletesterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  visible: boolean = true;
+  visible: boolean = false;
   usersOne: string[] = ['Marcin'];
 
   value = 'lorem ipsumik';
@@ -56,7 +57,7 @@ export class AppComponent {
   left = 100;
   top = 700;
 
-  isActive = false;
+  isActive = true;
   shouldBeVisable = false;
   values: number[] = [1, 2, 3, 4, 5];
   title = 'agnular-course';
