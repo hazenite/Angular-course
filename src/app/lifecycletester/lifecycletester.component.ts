@@ -6,6 +6,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-lifecycletester',
@@ -13,22 +14,13 @@ import {
   templateUrl: './lifecycletester.component.html',
   styleUrl: './lifecycletester.component.scss',
 })
-export class LifecycletesterComponent implements OnInit, OnChanges, OnDestroy {
+export class LifecycletesterComponent implements OnChanges, OnDestroy {
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('blabla', changes);
+  }
   ngOnDestroy(): void {
     console.log('Ive destroyed that');
   }
   @Input() myChange: number = 0;
-
-  ngOnInit(): void {
-    console.log('change value in on Init: ', this.myChange);
-  }
-
-  changeIt() {
-    this.myChange = 1;
-    console.log('myChange', this.myChange);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('Change value in on change function', changes);
-  }
+  @Input() myRandomNumbers: number[] = [];
 }

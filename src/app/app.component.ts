@@ -45,6 +45,7 @@ type Box = {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  randomNumber: number = Math.round(Math.random() * 255);
   visible: boolean = false;
   usersOne: string[] = ['Marcin'];
 
@@ -56,7 +57,8 @@ export class AppComponent {
 
   left = 100;
   top = 700;
-
+  myChange: number = 0;
+  myRandomNumbers: number[] = [];
   isActive = true;
   shouldBeVisable = false;
   values: number[] = [1, 2, 3, 4, 5];
@@ -65,6 +67,16 @@ export class AppComponent {
     { id: 1, name: 'Marcin' },
     { id: 2, name: 'Magda' },
   ];
+
+  changeIt() {
+    this.myChange = Math.round(Math.random() * 255);
+    console.log('myChange', this.myChange);
+  }
+
+  addToTheTab() {
+    this.myRandomNumbers.push(this.myChange);
+    console.log('myRamdon', this.myChange);
+  }
 
   toggleVisablity() {
     this.visible = !this.visible;

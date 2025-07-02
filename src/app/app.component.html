@@ -1,7 +1,13 @@
 <button (click) = "toggleVisablity()"> toggle visability </button> 
  @if (visible) {
-<app-lifecycletester [myChange] = 2></app-lifecycletester>
+<app-lifecycletester [myChange] = myChange [myRandomNumbers]= myRandomNumbers > </app-lifecycletester>
 }
+
+<button (click)="changeIt()">Click on me</button>
+{{myChange}}
+<button (click)="addToTheTab()">Add to tab
+</button>
+{{myRandomNumbers}}
 <!-- @if (visible) {<
 <app-title></app-title>
 }
