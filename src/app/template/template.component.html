@@ -1,0 +1,17 @@
+<p>template works!</p>
+<ng-template #temp>
+    <p> I am a second paragraph </p>
+
+</ng-template>>
+
+<ng-container [ngTemplateOutlet] = "temp"></ng-container>
+<input type="text" name="value" #input>
+
+
+<button (click)="input.focus()">Focus</button> 
+
+<pre>
+      {{ input.name}}
+</pre>
+
+<button (click)= "show()"> Show</button>

@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { ChildComponent } from '../child/child.component';
 
 @Component({
@@ -8,11 +14,13 @@ import { ChildComponent } from '../child/child.component';
   styleUrl: './parent.component.scss',
 })
 export class ParentComponent {
-  value: null | number = null;
+  value: number = 1000;
+
+  value2: null | number = null;
 
   @Output() handleNewValue3 = new EventEmitter<string>();
 
-  value2: number = 10;
+  value3: number = 10;
 
   changeValue = (newValue: number) => {
     console.log('Trying to save number', newValue, this);
@@ -20,7 +28,7 @@ export class ParentComponent {
   };
 
   randomizeValue() {
-    this.value = Math.round(Math.random() * (100 - 1) + 1);
+    this.value2 = Math.round(Math.random() * (100 - 1) + 1);
   }
 
   handleNewValue(newValue: number) {
@@ -33,5 +41,9 @@ export class ParentComponent {
   }
   handleNewValue2(value: string) {
     this.handleNewValue3.emit(value);
+  }
+
+  increase() {
+    this.value++;
   }
 }

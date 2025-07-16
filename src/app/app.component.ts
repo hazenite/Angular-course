@@ -27,6 +27,7 @@ import { HomeworkComponentComponent } from './homework-component/homework-compon
 import { PageLayoutComponent } from './page-layout/page-layout.component';
 import { MyIpComponent } from './my-ip/my-ip.component';
 import { LifecycletesterComponent } from './lifecycletester/lifecycletester.component';
+import { TemplateComponent } from './template/template.component';
 
 type Box = {
   r: number;
@@ -40,7 +41,14 @@ type Box = {
 
 @Component({
   selector: 'app-root',
-  imports: [MyIpComponent, TitleComponent, LifecycletesterComponent],
+  imports: [
+    MyIpComponent,
+    TitleComponent,
+    LifecycletesterComponent,
+    ParentComponent,
+    TemplateComponent,
+    FooComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -70,7 +78,6 @@ export class AppComponent {
 
   changeIt() {
     this.myChange = Math.round(Math.random() * 255);
-    console.log('myChange', this.myChange);
   }
 
   addToTheTab() {

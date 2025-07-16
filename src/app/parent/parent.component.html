@@ -6,7 +6,15 @@
 <!-- <app-child (onNewValue2)="handleNewValue2($event)" [callback]="changeValue"(onNewValue)="handleNewValue($event)" (onCustomEvent)="handleCustomEvent($event)" ></app-child> -->
 
 
-
+<!-- 
 <app-child (onNewValue2)="handleNewValue2($event)"></app-child>
 
+ -->
 
+
+ <p> Parent: {{value}}</p>
+
+ <app-child [(value)] = value ></app-child>
+
+
+ <button (click)="increase()">+1 from parent</button>
