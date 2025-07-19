@@ -28,6 +28,8 @@ import { PageLayoutComponent } from './page-layout/page-layout.component';
 import { MyIpComponent } from './my-ip/my-ip.component';
 import { LifecycletesterComponent } from './lifecycletester/lifecycletester.component';
 import { TemplateComponent } from './template/template.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { DataTableComponent } from './data-table/data-table.component';
 
 type Box = {
   r: number;
@@ -48,6 +50,8 @@ type Box = {
     ParentComponent,
     TemplateComponent,
     FooComponent,
+    PaginationComponent,
+    DataTableComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
