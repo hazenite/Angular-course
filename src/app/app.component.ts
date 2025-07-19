@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HelloComponent } from './hello/hello.component';
 import { NameDisplayerComponent } from './name-displayer/name-displayer.component';
@@ -57,6 +64,13 @@ type Box = {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  counter: WritableSignal<number> = signal(10);
+
+  doubleCounter: Signal<number> = computed(() => {
+    console.log('Runnning doubleCounter signal');
+    return this.counter() * 2;
+  });
+
   randomNumber: number = Math.round(Math.random() * 255);
   visible: boolean = false;
   usersOne: string[] = ['Marcin'];
@@ -79,6 +93,31 @@ export class AppComponent {
     { id: 1, name: 'Marcin' },
     { id: 2, name: 'Magda' },
   ];
+
+  constructor() {
+    effect((onCleanup) => {
+      document.title = this.counter().toString();
+      const interval = setInterval(() => {
+        console.log(`TICK`);
+      }, this.counter() * 10);
+      // console.log(`Counter value ${this.counter()}`);
+
+      onCleanup(() => {
+        clearInterval(interval);
+      });
+    });
+  }
+
+  reset() {
+    this.counter.set(1000);
+  }
+  increase() {
+    this.counter.update((prev) => prev + 1);
+  }
+
+  decrease() {
+    this.counter.update((prev) => prev - 1);
+  }
 
   changeIt() {
     this.myChange = Math.round(Math.random() * 255);
