@@ -37,6 +37,7 @@ import { LifecycletesterComponent } from './lifecycletester/lifecycletester.comp
 import { TemplateComponent } from './template/template.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { DataTableComponent } from './data-table/data-table.component';
+import { NumbersComponent } from './numbers/numbers.component';
 
 type Box = {
   r: number;
@@ -59,6 +60,7 @@ type Box = {
     FooComponent,
     PaginationComponent,
     DataTableComponent,
+    NumbersComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -95,17 +97,16 @@ export class AppComponent {
   ];
 
   constructor() {
-    effect((onCleanup) => {
-      document.title = this.counter().toString();
-      const interval = setInterval(() => {
-        console.log(`TICK`);
-      }, this.counter() * 10);
-      // console.log(`Counter value ${this.counter()}`);
-
-      onCleanup(() => {
-        clearInterval(interval);
-      });
-    });
+    // effect((onCleanup) => {
+    //   document.title = this.counter().toString();
+    //   const interval = setInterval(() => {
+    //     console.log(`TICK`);
+    //   }, this.counter() * 10);
+    //   // console.log(`Counter value ${this.counter()}`);
+    //   onCleanup(() => {
+    //     clearInterval(interval);
+    //   });
+    // });
   }
 
   reset() {

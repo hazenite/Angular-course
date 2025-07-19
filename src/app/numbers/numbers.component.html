@@ -1,0 +1,46 @@
+
+<button (click) = "increase()">
+    +1
+</button>
+
+<button (click) = "decrease()">
+    -1
+</button>
+
+
+{{ age()}} 
+
+@if (isHeOld()) {
+    <div>Jest pelnoletni</div>
+  }
+
+<button (click) = "addNewNumber()"> 
+     Add new number
+</button>
+
+
+<h2>
+    All numbers
+</h2>
+
+<ul>
+
+    @for(value of numbers(); track $index){
+        <li> 
+            {{value}}
+        </li>
+    }
+</ul>
+
+<h2>
+    Only even numbers
+</h2>
+
+<ul>
+
+    @for(value of evenNumbers(); track $index){
+        <li> 
+            {{value}}
+        </li>
+    }
+</ul>
