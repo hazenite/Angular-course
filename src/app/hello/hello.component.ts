@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-hello',
@@ -17,5 +17,9 @@ export class HelloComponent {
 
   getValue() {
     return this.value;
+  }
+
+  addNewValue() {
+    const newValue = Math.round(Math.random() * 10);
   }
 }

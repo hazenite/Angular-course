@@ -1,37 +1,14 @@
 import {
   Component,
   computed,
-  effect,
   Signal,
   signal,
   WritableSignal,
 } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HelloComponent } from './hello/hello.component';
-import { NameDisplayerComponent } from './name-displayer/name-displayer.component';
 import { ParentComponent } from './parent/parent.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { DollarConverterComponent } from './dollar-converter/dollar-converter.component';
-import { UsersComponent } from './users/users.component';
-import { GrandparentComponent } from './grandparent/grandparent.component';
-import { RandomNumberButtonComponent } from './random-number-button/random-number-button.component';
-import { RandomNumbersComponent } from './random-numbers/random-numbers.component';
-import { CarComponent } from './car/car.component';
-import { CarsComponent } from './cars/cars.component';
-import { NgIf, NgFor, NgClass, NgStyle } from '@angular/common';
 import { FooComponent } from './foo/foo.component';
-import { LazyComponent } from './lazy/lazy.component';
-import { CrazyBoxComponent } from './crazy-box/crazy-box.component';
 import { Coords } from './types';
-import { ContainerComponent } from './container/container.component';
 import { TitleComponent } from './title/title.component';
-import { ConditionalContentComponent } from './conditional-content/conditional-content.component';
-import { SnartComponentComponent } from './snart-component/snart-component.component';
-import { PageTitleComponent } from './page-title/page-title.component';
-import { PageContainerComponent } from './page-container/page-container.component';
-import { PageBodyComponent } from './page-body/page-body.component';
-import { HomeworkComponentComponent } from './homework-component/homework-component.component';
-import { PageLayoutComponent } from './page-layout/page-layout.component';
 import { MyIpComponent } from './my-ip/my-ip.component';
 import { LifecycletesterComponent } from './lifecycletester/lifecycletester.component';
 import { TemplateComponent } from './template/template.component';
@@ -51,17 +28,7 @@ type Box = {
 
 @Component({
   selector: 'app-root',
-  imports: [
-    MyIpComponent,
-    TitleComponent,
-    LifecycletesterComponent,
-    ParentComponent,
-    TemplateComponent,
-    FooComponent,
-    PaginationComponent,
-    DataTableComponent,
-    NumbersComponent,
-  ],
+  imports: [NumbersComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -72,6 +39,8 @@ export class AppComponent {
     console.log('Runnning doubleCounter signal');
     return this.counter() * 2;
   });
+
+  valueDetection = 'change-detection';
 
   randomNumber: number = Math.round(Math.random() * 255);
   visible: boolean = false;
@@ -95,6 +64,7 @@ export class AppComponent {
     { id: 1, name: 'Marcin' },
     { id: 2, name: 'Magda' },
   ];
+  valuesOfDetection: number[] = [];
 
   constructor() {
     // effect((onCleanup) => {
@@ -189,5 +159,15 @@ export class AppComponent {
 
   handlewNewPosition(coords: Coords) {
     this.coords.push(coords);
+  }
+
+  changeName() {
+    this.valueDetection = `Lorem ipsum`;
+  }
+
+  addNewValue() {
+    const addNewValue = Math.round(Math.random() * 80);
+    // this.valuesOfDetection.push(addNewValue);
+    this.valuesOfDetection = [...this.valuesOfDetection, addNewValue];
   }
 }

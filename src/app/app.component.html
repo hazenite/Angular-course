@@ -1,4 +1,9 @@
-<app-numbers></app-numbers>
+<app-numbers [value] = "valueDetection" [values]="valuesOfDetection"></app-numbers>
+
+<button (click)="changeName()"> Change value </button>
+
+
+<button (click)="addNewValue()"> Add value </button>
 
 
 <!-- 
