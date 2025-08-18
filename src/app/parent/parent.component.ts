@@ -6,6 +6,7 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ChildComponent } from '../child/child.component';
 
@@ -15,6 +16,7 @@ import { ChildComponent } from '../child/child.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './parent.component.html',
   styleUrl: './parent.component.scss',
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class ParentComponent {
   @Input() numbers: number[] = [];

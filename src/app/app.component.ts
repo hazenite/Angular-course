@@ -35,6 +35,7 @@ type Box = {
     FooComponent,
     GrandparentComponent,
     UsersComponent,
+    ParentComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -71,6 +72,12 @@ export class AppComponent {
     { id: 1, name: 'Marcin' },
     { id: 2, name: 'Magda' },
   ];
+
+  theme: `light` | 'dark' = 'light';
+
+  toggleTheme() {
+    this.theme = this.theme === `dark` ? `light` : 'dark';
+  }
   valuesOfDetection: number[] = [];
 
   numbers: number[] = [];

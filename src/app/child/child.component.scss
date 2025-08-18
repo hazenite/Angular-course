@@ -1,0 +1,21 @@
+.themed-box {
+    padding: 20px;
+    background-color:burlywood;
+    color: white;
+}
+
+
+:host-context(.theme-light){
+    .themed-box {
+        background-color: goldenrod;
+        color: black;
+    }
+}
+
+
+:host-context(.theme-dark){
+    .themed-box {
+        background-color: blueviolet;
+        color: black;
+    }
+}

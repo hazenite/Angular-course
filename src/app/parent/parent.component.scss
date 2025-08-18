@@ -1,0 +1,51 @@
+ul {
+    list-style-type: none;
+
+    padding: 30px;
+    background-color:maroon;
+
+    li{
+        padding: 20px;
+        background-color: white;
+    }
+}
+
+
+:host {
+    width: 500px;
+    padding:15px;
+    display: block;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.button {
+    border-radius: 10px;
+    padding: 8px 16px;
+
+    &.button-primary {
+        background-color: chocolate;
+        color:beige
+    }
+}
+
+:host-context(.light){
+   .button{
+    &.button-primary {
+        background-color: lightblue;
+        color:darkblue
+    }
+}
+}
+
+
+:host-context(.dark){
+    .button{
+    &.button-primary {
+        background-color: darkblue;
+        color:beige
+    }
+}
+}
