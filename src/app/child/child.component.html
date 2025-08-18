@@ -1,11 +1,12 @@
-<h1>To sie dzieje z child {{random}}</h1>
 
-<button (click) = "setNewValue()"> Set new Value</button>
 
-<button (click) = "emitNewValue()"> Set new by EventEmitter</button>
+<button (click) = "addNewNumber()" >  Add New Number from child component</button>
 
-<button (click)="emitNewValue2()">Emit "Lorem Ipsum"</button>
+<ul>
 
-<p>Child {{ value }}</p>
-
-<button (click)="increase()">+1 from child</button>
+    @for(item of numbers; track $index) {
+        <li>
+            {{item}}
+        </li>
+    }
+</ul>

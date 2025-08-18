@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -12,10 +13,15 @@ import {
   imports: [],
   templateUrl: './child.component.html',
   styleUrl: './child.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChildComponent implements OnChanges {
+  @Input() numbers: number[] = [];
+
   @Input() value!: number;
   @Output() valueChange = new EventEmitter<number>();
+
+  @Output() onNewNumber = new EventEmitter<number>();
 
   @Input() random: null | number = null;
   @Input() callback!: (newValue: number) => void;
@@ -25,14 +31,19 @@ export class ChildComponent implements OnChanges {
 
   @Output() onNewValue2 = new EventEmitter<string>();
 
-  emitNewValue2() {
-    this.onNewValue2.emit('Lorem Ipsum ');
-  }
-
   @Output() onCustomEvent = new EventEmitter<{
     title: string;
     description: string;
   }>();
+
+  emitNewValue2() {
+    this.onNewValue2.emit('Lorem Ipsum ');
+  }
+
+  addNewNumber() {
+    const newValue = Math.round(Math.random() * 80);
+    this.onNewNumber.emit(newValue);
+  }
 
   setNewValue() {
     if (typeof this.callback === 'function') {

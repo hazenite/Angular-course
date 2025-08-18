@@ -1,6 +1,8 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
   OnChanges,
   Output,
   SimpleChanges,
@@ -10,10 +12,15 @@ import { ChildComponent } from '../child/child.component';
 @Component({
   selector: 'app-parent',
   imports: [ChildComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './parent.component.html',
   styleUrl: './parent.component.scss',
 })
 export class ParentComponent {
+  @Input() numbers: number[] = [];
+
+  @Output() onNewNumber = new EventEmitter<number>();
+
   value: number = 1000;
 
   value2: null | number = null;
@@ -32,8 +39,7 @@ export class ParentComponent {
   }
 
   handleNewValue(newValue: number) {
-    console.log('Trying to save number sent by Event Emitter', newValue, this);
-    this.value2 = newValue;
+    this.onNewNumber.emit(newValue);
   }
 
   handleCustomEvent(value: { title: string; description: string }) {

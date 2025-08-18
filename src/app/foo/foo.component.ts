@@ -1,6 +1,7 @@
 import {
   AfterViewChecked,
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   Input,
@@ -8,9 +9,11 @@ import {
   OnDestroy,
   OnInit,
   QueryList,
+  signal,
   SimpleChanges,
   ViewChildren,
   viewChildren,
+  WritableSignal,
 } from '@angular/core';
 import { BarComponent } from '../bar/bar.component';
 
@@ -19,6 +22,7 @@ import { BarComponent } from '../bar/bar.component';
   imports: [BarComponent],
   templateUrl: './foo.component.html',
   styleUrl: './foo.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooComponent
   implements OnInit, OnChanges, OnDestroy, AfterViewInit
@@ -35,6 +39,8 @@ export class FooComponent
   value: string = '';
   @Input() users: string[] = [];
 
+  counter: WritableSignal<number> = signal(0);
+
   interval!: number;
 
   sum: number = 0;
@@ -44,12 +50,15 @@ export class FooComponent
     this.sum = this.barComponent.reduce((acc, curr) => acc + curr.value, 0);
   }
   ngOnInit(): void {
-    console.log('ngOnInit', this.value);
-
+    // console.log('ngOnInit', this.value);
     // this.interval = setInterval(() => {
     //   console.log('TICK');
     // }, 1000) as unknown as number;
-    console.log('Interval handler', this.interval);
+    // console.log('Interval handler', this.interval);
+
+    this.interval = setInterval(() => {
+      this.counter.update((prev) => prev + 1);
+    }, 1000) as unknown as number;
   }
 
   ngOnChanges(changes: SimpleChanges): void {

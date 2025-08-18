@@ -15,6 +15,8 @@ import { TemplateComponent } from './template/template.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { DataTableComponent } from './data-table/data-table.component';
 import { NumbersComponent } from './numbers/numbers.component';
+import { GrandparentComponent } from './grandparent/grandparent.component';
+import { UsersComponent } from './users/users.component';
 
 type Box = {
   r: number;
@@ -28,7 +30,12 @@ type Box = {
 
 @Component({
   selector: 'app-root',
-  imports: [NumbersComponent],
+  imports: [
+    NumbersComponent,
+    FooComponent,
+    GrandparentComponent,
+    UsersComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -65,6 +72,8 @@ export class AppComponent {
     { id: 2, name: 'Magda' },
   ];
   valuesOfDetection: number[] = [];
+
+  numbers: number[] = [];
 
   constructor() {
     // effect((onCleanup) => {
@@ -169,5 +178,14 @@ export class AppComponent {
     const addNewValue = Math.round(Math.random() * 80);
     // this.valuesOfDetection.push(addNewValue);
     this.valuesOfDetection = [...this.valuesOfDetection, addNewValue];
+  }
+
+  addNewNumber() {
+    const newValue = Math.round(Math.random() * 80);
+    this.numbers.push(newValue);
+  }
+
+  handleNewValue(newValue: number) {
+    this.numbers.push(newValue);
   }
 }
