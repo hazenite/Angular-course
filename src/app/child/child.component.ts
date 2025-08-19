@@ -15,7 +15,6 @@ import {
   templateUrl: './child.component.html',
   styleUrl: './child.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
 })
 export class ChildComponent implements OnChanges {
   @Input() numbers: number[] = [];

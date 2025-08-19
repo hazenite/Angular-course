@@ -1,6 +1,4 @@
 ul {
-    list-style-type: none;
-
     padding: 30px;
     background-color:maroon;
 
@@ -11,13 +9,13 @@ ul {
 }
 
 
-:host {
-    width: 500px;
-    padding:15px;
-    display: block;
-    border: none;
-    cursor: pointer;
-}
+// :host {
+//     width: 500px;
+//     padding:15px;
+//     display: block;
+//     border: none;
+//     cursor: pointer;
+// }
 
 
 
@@ -31,21 +29,21 @@ ul {
     }
 }
 
-:host-context(.light){
-   .button{
-    &.button-primary {
-        background-color: lightblue;
-        color:darkblue
-    }
-}
-}
+// :host-context(.light){
+//    .button{
+//     &.button-primary {
+//         background-color: lightblue;
+//         color:darkblue
+//     }
+// }
+// }
 
 
-:host-context(.dark){
-    .button{
-    &.button-primary {
-        background-color: darkblue;
-        color:beige
-    }
-}
-}
+// :host-context(.dark){
+//     .button{
+//     &.button-primary {
+//         background-color: darkblue;
+//         color:beige
+//     }
+// }
+// }
