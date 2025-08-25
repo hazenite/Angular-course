@@ -1,6 +1,9 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
+  OnInit,
+  resolveForwardRef,
   Signal,
   signal,
   WritableSignal,
@@ -17,6 +20,17 @@ import { DataTableComponent } from './data-table/data-table.component';
 import { NumbersComponent } from './numbers/numbers.component';
 import { GrandparentComponent } from './grandparent/grandparent.component';
 import { UsersComponent } from './users/users.component';
+import {
+  ArgumentOutOfRangeError,
+  filter,
+  from,
+  Observable,
+  of,
+  Subscription,
+  take,
+  takeUntil,
+} from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 type Box = {
   r: number;
@@ -30,17 +44,26 @@ type Box = {
 
 @Component({
   selector: 'app-root',
-  imports: [
-    NumbersComponent,
-    FooComponent,
-    GrandparentComponent,
-    UsersComponent,
-    ParentComponent,
-  ],
+  imports: [AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  counters$ = new Observable<number>((observer) => {
+    let counter = 1;
+
+    let interval = setInterval(() => {
+      observer.next(counter);
+      counter++;
+    }, 1000);
+
+    return {
+      unsubscribe() {
+        clearInterval(interval);
+      },
+    };
+  });
   counter: WritableSignal<number> = signal(10);
 
   doubleCounter: Signal<number> = computed(() => {
@@ -82,6 +105,15 @@ export class AppComponent {
 
   numbers: number[] = [];
 
+  private counter2: number = 0;
+  private interval2!: number;
+
+  private sub1!: Subscription;
+  private sub2!: Subscription;
+  public obsRandomValue!: Observable<number>;
+  public randomValue: number = 0;
+
+  obs$!: Observable<number>;
   constructor() {
     // effect((onCleanup) => {
     //   document.title = this.counter().toString();
@@ -93,6 +125,121 @@ export class AppComponent {
     //     clearInterval(interval);
     //   });
     // });
+  }
+
+  ngOnInit(): void {
+    const counter23 = new Observable<number>((observer) => {
+      let counter23 = 0;
+      setInterval(() => {
+        observer.next(counter23++);
+      }, 1000);
+    });
+
+    const watchdog = new Observable<boolean>((observer) => {
+      setTimeout(() => {
+        observer.next(true);
+      }, 5000);
+    });
+
+    counter23
+      .pipe(
+        takeUntil(watchdog)
+        tap(el)
+        filter((el) => el % 2 === 0)
+      )
+      .subscribe((val) => console.log(val));
+    // const obs1 = of([1, 2, 3, 4]);
+    // const obs2 = from([1, 2, 3, 4]);
+
+    // obs1.subscribe((val) => console.log('OF', val));
+    // obs2.subscribe((val) => console.log('FROM', val));
+
+    // this.obs$ = new Observable<number>((observer) => {
+    //   let counter = 0;
+    //   setInterval(() => {
+    //     observer.next(counter++);
+    //   }, 1000);
+    // }).pipe(filter((el) => el % 2 === 0));
+
+    // const array = [1, 2, 3, 4, 5, 6, 7, 8];
+
+    // const newArray = array
+    //   .filter((val) => val % 2 === 0)
+    //   .map((val) => val ** 2)
+    //   .reduce((arr, curr) => arr + curr);
+
+    // console.log(newArray);
+    // this.obsRandomValue = new Observable<number>((observer) => {
+    //   console.log('Observable start');
+    //   const interval2 = setInterval(() => {
+    //     console.log('tick');
+    //     const value = Math.round(Math.random() * 2000);
+    //     observer.next(value);
+    //   }, 3000);
+    //   return {
+    //     unsubscribe() {
+    //       console.log('Observable - unsubsribe');
+    //       clearInterval(interval2);
+    //     },
+    //   };
+    // });
+
+    // this.interval2 = setInterval(() => {
+    //   this.counter2++;
+    // }, 1000) as unknown as number;
+
+    // const observable = new Observable<number>((observer) => {
+    //   console.log('Observable start');
+    //   const interval2 = setInterval(() => {
+    //     console.log('tick');
+    //     const value = Math.round(Math.random() * 2000);
+    //     observer.next(value);
+    //   }, 3000);
+    //   return {
+    //     unsubscribe() {
+    //       console.log('Observable - unsubsrive');
+    //       clearInterval(interval2);
+    //     },
+    //   };
+    // });
+
+    // const observable2 = new Observable((observer) => {
+    //   setInterval(() => observer.next(this.counter2), 1000);
+    // });
+
+    // const promise = new Promise((resolve) => {
+    //   console.log('Promise start');
+    //   setTimeout(() => {
+    //     const value2 = Math.round(Math.random() * 2000);
+    //     resolve(value2);
+    //   }, 3000);
+    // });
+
+    // setTimeout(() => {
+    //   this.sub1 = observable.subscribe((val) => {
+    //     this.randomValue = val;
+    //     console.log('Observable 1 - 1 ', val);
+    //   });
+
+    //   this.sub2 = observable.subscribe((val) => {
+    //     console.log('Observable1 1 - 1', val);
+    //   });
+
+    //   observable2.subscribe((val) => {
+    //     console.log('Observable2 2 - 1', val);
+    //   });
+    //   observable2.subscribe((val) => {
+    //     console.log('Observable2 2 - 2', val);
+    //   });
+
+    //   promise.then((val) => console.log('Promise', val));
+    //   promise.then((val) => console.log('Promise2', val));
+    // }, 2000);
+
+    // setTimeout(() => {
+    //   this.sub1.unsubscribe();
+    //   this.sub2.unsubscribe();
+    // }, 10000);
   }
 
   reset() {
