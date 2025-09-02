@@ -1,36 +1,40 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   computed,
-  OnInit,
-  resolveForwardRef,
+  ElementRef,
   Signal,
   signal,
+  ViewChild,
   WritableSignal,
 } from '@angular/core';
-import { ParentComponent } from './parent/parent.component';
-import { FooComponent } from './foo/foo.component';
 import { Coords } from './types';
-import { TitleComponent } from './title/title.component';
-import { MyIpComponent } from './my-ip/my-ip.component';
-import { LifecycletesterComponent } from './lifecycletester/lifecycletester.component';
-import { TemplateComponent } from './template/template.component';
-import { PaginationComponent } from './pagination/pagination.component';
-import { DataTableComponent } from './data-table/data-table.component';
-import { NumbersComponent } from './numbers/numbers.component';
-import { GrandparentComponent } from './grandparent/grandparent.component';
-import { UsersComponent } from './users/users.component';
 import {
-  ArgumentOutOfRangeError,
-  filter,
-  from,
+  concat,
+  concatMap,
+  debounceTime,
+  delay,
+  exhaustMap,
+  fromEvent,
+  interval,
+  map,
+  merge,
+  mergeMap,
   Observable,
   of,
+  scan,
   Subscription,
+  switchMap,
   take,
-  takeUntil,
 } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+
+type User = {
+  id: string;
+  name: string;
+  age: number;
+};
 
 type Box = {
   r: number;
@@ -49,7 +53,12 @@ type Box = {
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+  @ViewChild('btn', { static: true }) button!: ElementRef<HTMLButtonElement>;
+
+  @ViewChild('secondBtn', { static: true })
+  buttonSecond!: ElementRef<HTMLButtonElement>;
+
   counters$ = new Observable<number>((observer) => {
     let counter = 1;
 
@@ -91,10 +100,19 @@ export class AppComponent implements OnInit {
   shouldBeVisable = false;
   values: number[] = [1, 2, 3, 4, 5];
   title = 'agnular-course';
-  users: { id: number; name: string }[] = [
-    { id: 1, name: 'Marcin' },
-    { id: 2, name: 'Magda' },
-  ];
+
+  adults$ = this.getUser().pipe(
+    map((users) => users.filter((user) => user.age >= 18))
+  );
+
+  ifAdults$ = this.getUser().pipe(
+    map((users) =>
+      users.map((user) => ({
+        ...user,
+        age: user.age >= 18,
+      }))
+    )
+  );
 
   theme: `light` | 'dark' = 'light';
 
@@ -112,6 +130,8 @@ export class AppComponent implements OnInit {
   private sub2!: Subscription;
   public obsRandomValue!: Observable<number>;
   public randomValue: number = 0;
+  timer!: Subscription;
+  messenger!: Observable<string[]>;
 
   obs$!: Observable<number>;
   constructor() {
@@ -127,47 +147,122 @@ export class AppComponent implements OnInit {
     // });
   }
 
+  ngAfterViewInit(): void {
+    // fromEvent(this.button.nativeElement, 'click')
+    //   .pipe(debounceTime(3000))
+    //   .subscribe((val) => {
+    //     console.log('click', val);
+    //   });
+    fromEvent(this.buttonSecond.nativeElement, 'click')
+      .pipe(exhaustMap((_) => interval(1000).pipe(take(3))))
+      .subscribe((val) => {
+        console.log('click', val);
+      });
+  }
+
+  getNewestData() {
+    return {
+      value: Math.round(Math.random() * 1000),
+    };
+  }
+  // ngOnDestroy(): void {
+  //   this.timer.unsubscribe();
+  // }
+  endOfTime() {
+    this.timer.unsubscribe();
+  }
+  getData(id: number): Observable<string> {
+    return of(id).pipe(
+      delay(Math.round(Math.random() * 2000)),
+      map((id) => `Resouce #${id}`)
+    );
+  }
   ngOnInit(): void {
-    const counter23 = new Observable<number>((observer) => {
-      let counter23 = 0;
-      setInterval(() => {
-        observer.next(counter23++);
-      }, 1000);
-    });
-
-    const watchdog = new Observable<boolean>((observer) => {
-      setTimeout(() => {
-        observer.next(true);
-      }, 5000);
-    });
-
-    counter23
-      .pipe(
-        takeUntil(watchdog)
-        tap(el)
-        filter((el) => el % 2 === 0)
-      )
-      .subscribe((val) => console.log(val));
+    // const obs = interval(1000)
+    //   .pipe(mergeMap((id) => this.getData(id)))
+    //   .subscribe((val) => console.log(val));
+    // const source1 = interval(1500).pipe(
+    //   map((_) => `Source1: Lorem psum ${Math.round(Math.random() * 3000)}`),
+    //   take(3)
+    // );
+    // const source2 = interval(2000).pipe(
+    //   map((_) => `Source2: Dolor psum ${Math.round(Math.random() * 3000)}`)
+    // );
+    // this.messenger = merge(source1, source2).pipe(
+    //   scan((acc: string[], curr) => [...acc, curr].slice(-5), [])
+    // );
+    //   this.timer = interval(1000)
+    //     .pipe(
+    //       map((_) => this.getNewestData())
+    //       // take(5)
+    //     )
+    //     .subscribe((val) => console.log(val));
+    //   const currentDate = new Date();
+    //   currentDate.setSeconds(currentDate.getSeconds() + 5);
+    //   timer(currentDate).subscribe((val) => console.log('Timer', val));
+    // const counter$ = new Observable<number>((observer) => {
+    //   let counter23 = 0;
+    //   setInterval(() => {
+    //     const repeat = Math.random() > 0.5;
+    //     observer.next(repeat ? counter23 : counter23++);
+    //   }, 100);
+    // });
+    // const counter2$ = new Observable<number>((observer) => {
+    //   let counter23 = 0;
+    //   setInterval(() => {
+    //     observer.next(counter23);
+    //     counter23 += 2;
+    //   }, 100);
+    // });
+    // const mergeCounters = combineLatest([counter$, counter2$]).subscribe(
+    //   (val) => {
+    //     console.log(val);
+    //   }
+    // );
+    // const forkedCounter = forkJoin([
+    //   counter$.pipe(take(5)),
+    //   counter2$.pipe(take(7)),
+    // ]).subscribe((val) => {
+    //   console.log(val);
+    // });
+    // counter$ // .pipe(take(5), debounceTime(300))
+    //   .pipe(distinctUntilChanged())
+    //   .subscribe((val) => console.log(val));
+    // counter23
+    //   .pipe(
+    //     filter((el) => el % 2 == 0),
+    //     map((el) => el ** 2),
+    //     scan((acc, curr) => acc + curr)
+    //   )
+    //   .subscribe((val) => console.log(val));
+    // const watchdog = new Observable<boolean>((observer) => {
+    //   setTimeout(() => {
+    //     observer.next(true);
+    //   }, 5000);
+    // });
+    // counter23
+    //   .pipe(
+    //     startWith(1000),
+    //     takeUntil(watchdog),
+    //     tap((el) => console.log('Before filter', el)),
+    //     filter((el) => el % 2 === 0)
+    //   )
+    //   .subscribe((val) => console.log(val));
     // const obs1 = of([1, 2, 3, 4]);
     // const obs2 = from([1, 2, 3, 4]);
-
     // obs1.subscribe((val) => console.log('OF', val));
     // obs2.subscribe((val) => console.log('FROM', val));
-
     // this.obs$ = new Observable<number>((observer) => {
     //   let counter = 0;
     //   setInterval(() => {
     //     observer.next(counter++);
     //   }, 1000);
     // }).pipe(filter((el) => el % 2 === 0));
-
     // const array = [1, 2, 3, 4, 5, 6, 7, 8];
-
     // const newArray = array
     //   .filter((val) => val % 2 === 0)
     //   .map((val) => val ** 2)
     //   .reduce((arr, curr) => arr + curr);
-
     // console.log(newArray);
     // this.obsRandomValue = new Observable<number>((observer) => {
     //   console.log('Observable start');
@@ -183,11 +278,9 @@ export class AppComponent implements OnInit {
     //     },
     //   };
     // });
-
     // this.interval2 = setInterval(() => {
     //   this.counter2++;
     // }, 1000) as unknown as number;
-
     // const observable = new Observable<number>((observer) => {
     //   console.log('Observable start');
     //   const interval2 = setInterval(() => {
@@ -202,11 +295,9 @@ export class AppComponent implements OnInit {
     //     },
     //   };
     // });
-
     // const observable2 = new Observable((observer) => {
     //   setInterval(() => observer.next(this.counter2), 1000);
     // });
-
     // const promise = new Promise((resolve) => {
     //   console.log('Promise start');
     //   setTimeout(() => {
@@ -214,32 +305,49 @@ export class AppComponent implements OnInit {
     //     resolve(value2);
     //   }, 3000);
     // });
-
     // setTimeout(() => {
     //   this.sub1 = observable.subscribe((val) => {
     //     this.randomValue = val;
     //     console.log('Observable 1 - 1 ', val);
     //   });
-
     //   this.sub2 = observable.subscribe((val) => {
     //     console.log('Observable1 1 - 1', val);
     //   });
-
     //   observable2.subscribe((val) => {
     //     console.log('Observable2 2 - 1', val);
     //   });
     //   observable2.subscribe((val) => {
     //     console.log('Observable2 2 - 2', val);
     //   });
-
     //   promise.then((val) => console.log('Promise', val));
     //   promise.then((val) => console.log('Promise2', val));
     // }, 2000);
-
     // setTimeout(() => {
     //   this.sub1.unsubscribe();
     //   this.sub2.unsubscribe();
-    // }, 10000);
+    //   // }, 10000);
+  }
+  users$ = this.getUser();
+
+  getUser(): Observable<User[]> {
+    const users: User[] = [
+      { id: '1', name: 'Magda', age: 18 },
+      { id: '2', name: 'Marian', age: 17 },
+      { id: '3', name: 'Aga', age: 20 },
+      { id: '4', name: 'Ola', age: 15 },
+    ];
+
+    return of(users).pipe(delay(1000));
+  }
+
+  getUser2(): Observable<User[]> {
+    const users2: User[] = [
+      { id: '1', name: 'Magda', age: Math.random() * 18 },
+      { id: '2', name: 'Marian', age: Math.random() * 18 },
+      { id: '3', name: 'Aga', age: Math.random() * 18 },
+      { id: '4', name: 'Ola', age: Math.random() * 18 },
+    ];
+    return of(users2).pipe(delay(2000));
   }
 
   reset() {
