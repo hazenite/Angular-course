@@ -11,6 +11,8 @@ import {
 } from '@angular/core';
 import { Coords } from './types';
 import {
+  AsyncSubject,
+  BehaviorSubject,
   concat,
   concatMap,
   debounceTime,
@@ -23,7 +25,10 @@ import {
   mergeMap,
   Observable,
   of,
+  ReplaySubject,
   scan,
+  share,
+  Subject,
   Subscription,
   switchMap,
   take,
@@ -326,6 +331,37 @@ export class AppComponent {
     //   this.sub1.unsubscribe();
     //   this.sub2.unsubscribe();
     //   // }, 10000);
+
+    // const obs = interval(1000).pipe(share());
+    // obs.subscribe((val) => console.log('Sub1', val));
+
+    // setTimeout(() => {
+    //   obs.subscribe((val) => console.log('Sub2', val));
+    // }, 1000);
+
+    // const subject = new BehaviorSubject<number>(1000);
+
+    // const subject = new ReplaySubject<number>(3, 500);
+
+    const subject = new AsyncSubject<number>();
+
+    subject.subscribe((val) => console.log('Sub1', val));
+
+    setTimeout(() => {
+      subject.subscribe((val) => console.log('Sub2', val));
+    }, 2000);
+
+    subject.next(1);
+    subject.next(2);
+    subject.next(3);
+    subject.next(4);
+    subject.next(5);
+
+    // interval(1000).subscribe(subject);
+
+    setTimeout(() => {
+      subject.complete();
+    }, 5000);
   }
   users$ = this.getUser();
 
