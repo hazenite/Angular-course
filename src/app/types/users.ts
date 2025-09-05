@@ -4,6 +4,12 @@ export type User = {
   lastName: string;
 };
 
+export type UserSecond = {
+  id: string;
+  name: string;
+  age: number;
+};
+
 export type UserNameChangeEvent = {
   id: string;
   newName: string;

@@ -1,1 +1,7 @@
-<p> Welcome {{who}}</p>
+<button #forth>Forth</button>
+
+<ul>
+    @for(user of users$ | async; track user.id) {
+        <li>{{user.id}} -- {{user.name}} -- {{user.age}}  </li>
+    } 
+</ul>
