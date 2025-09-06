@@ -1,6 +1,19 @@
-<h1>Values</h1>
+<!-- <button (click) = "showComponent()">Show user status</button> -->
+@if (visible) {
+<app-user-status-component></app-user-status-component>
+
+}
+
+<button (click)="logOut()">Wyloguj</button>
+<button (click)="logIn()">Zaloguj</button>
+
+<button (click) = "toggleVisablity()"> toggle visability </button> 
+
+
+
+<!-- <h1>Values</h1>
 <app-pattern-generator></app-pattern-generator>
-<app-pattern-generator></app-pattern-generator>
+<app-pattern-generator></app-pattern-generator> -->
 
 <!-- 
 <p>App: {{value2}}</p>

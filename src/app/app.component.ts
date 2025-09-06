@@ -31,6 +31,8 @@ import {
 import { FooService } from './foo.service';
 import { FooComponent } from './foo/foo.component';
 import { PatternGeneratorComponent } from './pattern-generator/pattern-generator.component';
+import { UserStatusComponentComponent } from './user-status-component/user-status-component.component';
+import { AuthServiceService } from './services/auth-service.service';
 
 type User = {
   id: string;
@@ -50,7 +52,11 @@ type Box = {
 
 @Component({
   selector: 'app-root',
-  imports: [FooComponent, PatternGeneratorComponent],
+  imports: [
+    FooComponent,
+    PatternGeneratorComponent,
+    UserStatusComponentComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   // providers: [FooService],
@@ -104,7 +110,7 @@ export class AppComponent implements AfterViewInit {
   valueDetection = 'change-detection';
 
   randomNumber: number = Math.round(Math.random() * 255);
-  visible: boolean = false;
+  visible: boolean = true;
   usersOne: string[] = ['Marcin'];
 
   value = 'lorem ipsumik';
@@ -135,6 +141,14 @@ export class AppComponent implements AfterViewInit {
     )
   );
 
+  logOut() {
+    this.authSevice.logOut();
+  }
+
+  logIn() {
+    this.authSevice.logIn();
+  }
+
   theme: `light` | 'dark' = 'light';
 
   toggleTheme() {
@@ -158,19 +172,19 @@ export class AppComponent implements AfterViewInit {
 
   value2: number = 0;
 
-  // constructor(private fooService: FooService) {
-  //   // this.value2 = this.fooService.getValue();
-  //   // effect((onCleanup) => {
-  //   //   document.title = this.counter().toString();
-  //   //   const interval = setInterval(() => {
-  //   //     console.log(`TICK`);
-  //   //   }, this.counter() * 10);
-  //   //   // console.log(`Counter value ${this.counter()}`);
-  //   //   onCleanup(() => {
-  //   //     clearInterval(interval);
-  //   //   });
-  //   // });
-  // }
+  constructor(private authSevice: AuthServiceService) {
+    // this.value2 = this.fooService.getValue();
+    // effect((onCleanup) => {
+    //   document.title = this.counter().toString();
+    //   const interval = setInterval(() => {
+    //     console.log(`TICK`);
+    //   }, this.counter() * 10);
+    //   // console.log(`Counter value ${this.counter()}`);
+    //   onCleanup(() => {
+    //     clearInterval(interval);
+    //   });
+    // });
+  }
 
   getData2(id: number): Observable<{ id: number; value: number }> {
     return of({
