@@ -1,0 +1,9 @@
+<h2>
+    Pattern values: 
+</h2>
+<button (click)="getNextValue()"> Generate next pattern value</button>
+<ul>
+    @for(value of values(); track $index){
+       <li> {{value}} </li>
+    }
+</ul>

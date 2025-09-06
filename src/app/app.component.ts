@@ -28,7 +28,9 @@ import {
   take,
   takeUntil,
 } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { FooService } from './foo.service';
+import { FooComponent } from './foo/foo.component';
+import { PatternGeneratorComponent } from './pattern-generator/pattern-generator.component';
 
 type User = {
   id: string;
@@ -48,10 +50,10 @@ type Box = {
 
 @Component({
   selector: 'app-root',
-  imports: [AsyncPipe],
+  imports: [FooComponent, PatternGeneratorComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // providers: [FooService],
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('first')
@@ -153,18 +155,23 @@ export class AppComponent implements AfterViewInit {
   messenger!: Observable<string[]>;
 
   obs$!: Observable<number>;
-  constructor() {
-    // effect((onCleanup) => {
-    //   document.title = this.counter().toString();
-    //   const interval = setInterval(() => {
-    //     console.log(`TICK`);
-    //   }, this.counter() * 10);
-    //   // console.log(`Counter value ${this.counter()}`);
-    //   onCleanup(() => {
-    //     clearInterval(interval);
-    //   });
-    // });
-  }
+
+  value2: number = 0;
+
+  // constructor(private fooService: FooService) {
+  //   // this.value2 = this.fooService.getValue();
+  //   // effect((onCleanup) => {
+  //   //   document.title = this.counter().toString();
+  //   //   const interval = setInterval(() => {
+  //   //     console.log(`TICK`);
+  //   //   }, this.counter() * 10);
+  //   //   // console.log(`Counter value ${this.counter()}`);
+  //   //   onCleanup(() => {
+  //   //     clearInterval(interval);
+  //   //   });
+  //   // });
+  // }
+
   getData2(id: number): Observable<{ id: number; value: number }> {
     return of({
       id,
