@@ -7,6 +7,7 @@ import {
 import { Component } from '@angular/core';
 import { FooPipe } from '../foo.pipe';
 import { PlaceholderPipe } from '../../placeholder.pipe';
+import { SubstringPipe } from '../substring.pipe';
 
 @Component({
   selector: 'app-pipes',
@@ -17,13 +18,14 @@ import { PlaceholderPipe } from '../../placeholder.pipe';
     JsonPipe,
     FooPipe,
     PlaceholderPipe,
+    SubstringPipe,
   ],
   templateUrl: './pipes.component.html',
   styleUrl: './pipes.component.scss',
 })
 export class PipesComponent {
   valueText: string = 'Lorem ipsum';
-  value: string = '';
+  value: string = 'substring123';
   price = 1234.34;
   date = new Date();
   obj = {
