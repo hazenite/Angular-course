@@ -34,6 +34,7 @@ import { PatternGeneratorComponent } from './pattern-generator/pattern-generator
 import { UserStatusComponentComponent } from './user-status-component/user-status-component.component';
 import { AuthServiceService } from './services/auth-service.service';
 import { PipesComponent } from './pipes/pipes/pipes.component';
+import { ValuesListComponent } from './values-list/values-list.component';
 
 type User = {
   id: string;
@@ -58,6 +59,7 @@ type Box = {
     PatternGeneratorComponent,
     UserStatusComponentComponent,
     PipesComponent,
+    ValuesListComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
