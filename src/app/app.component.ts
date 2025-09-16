@@ -102,6 +102,8 @@ export class AppComponent implements AfterViewInit {
   });
   counter: WritableSignal<number> = signal(10);
 
+  userStatus!: Signal<'autorized' | 'unautorized'>;
+
   doubleCounter: Signal<number> = computed(() => {
     console.log('Runnning doubleCounter signal');
     return this.counter() * 2;
@@ -149,6 +151,14 @@ export class AppComponent implements AfterViewInit {
     this.authSevice.logIn();
   }
 
+  logOutSubject() {
+    this.authSevice.logOutSubject();
+  }
+
+  logInSubject() {
+    this.authSevice.logInSubject();
+  }
+
   theme: `light` | 'dark' = 'light';
 
   toggleTheme() {
@@ -173,6 +183,9 @@ export class AppComponent implements AfterViewInit {
   value2: number = 0;
 
   constructor(private authSevice: AuthServiceService) {
+    this.userStatus = computed(() =>
+      this.authSevice.isAuthenticated() ? 'autorized' : 'unautorized'
+    );
     // this.value2 = this.fooService.getValue();
     // effect((onCleanup) => {
     //   document.title = this.counter().toString();

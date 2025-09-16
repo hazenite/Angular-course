@@ -1,4 +1,6 @@
-<!-- <button (click) = "showComponent()">Show user status</button> -->
+
+
+<h1> {{userStatus()}}</h1>
 @if (visible) {
 <app-user-status-component></app-user-status-component>
 
@@ -6,6 +8,10 @@
 
 <button (click)="logOut()">Wyloguj</button>
 <button (click)="logIn()">Zaloguj</button>
+
+
+<button (click)="logOutSubject()">Wyloguj subject</button>
+<button (click)="logInSubject()">Zaloguj subject</button>
 
 <button (click) = "toggleVisablity()"> toggle visability </button> 
 
