@@ -1,4 +1,13 @@
 <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()"> 
+<p>Numbers</p>
+<app-input name="numberone" type ="numberb" [group] = "loginForm"/>
+<app-input name="numbertwo" type ="numberb" [group] = "loginForm"/>
+
+<p>Dodawanie: {{addNumbers$ | async}}</p>
+<p>Mnozenie: {{multiplyNumbers$ | async}}</p>
+
+
+<p> Sign in</p>
 <app-input name="login" type ="text" [group] = "loginForm"/>
 <app-input name="password" type ="password" [group] = "loginForm"/>
  <button type="submit" [disabled]="loginForm.invalid">Zatwierdź

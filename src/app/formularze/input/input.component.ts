@@ -10,8 +10,12 @@ import { ReactiveFormComponent } from '../reactive-form/reactive-form.component'
 })
 export class InputComponent {
   @Input() type: string = '';
+  @Input() typeb!: number;
 
   @Input() name: string = '';
+
+  @Input() numberone: number = 0;
+  @Input() numbertwo: number = 0;
 
   @Input() group!: FormGroup;
 

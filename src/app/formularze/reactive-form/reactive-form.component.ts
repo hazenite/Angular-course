@@ -27,12 +27,20 @@ export class ReactiveFormComponent {
   loginForm = this.fb.group({
     login: ['', [Validators.required, Validators.minLength(3)]],
     password: [''],
+    numberone: [0],
+    numbertwo: [0],
   });
 
   data$ = this.loginForm.valueChanges.pipe(
     map((values) => `${values.login}: ${values.password}`)
   );
 
+  addNumbers$ = this.loginForm.valueChanges.pipe(
+    map((value) => Number(value.numberone!) + Number(value.numbertwo!))
+  );
+  multiplyNumbers$ = this.loginForm.valueChanges.pipe(
+    map((value) => value.numberone || 0 * (value.numbertwo || 0))
+  );
   handleSubmit() {
     console.log(this.loginForm.controls.login);
   }
