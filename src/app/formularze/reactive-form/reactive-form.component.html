@@ -1,0 +1,12 @@
+<form [formGroup]="loginForm" (ngSubmit)="handleSubmit()"> 
+<app-input name="login" type ="text" [group] = "loginForm"/>
+<app-input name="password" type ="password" [group] = "loginForm"/>
+ <button type="submit" [disabled]="loginForm.invalid">Zatwierdź
+</button>
+<button type="button" (click) = "setDefault()">set Default 
+</button>
+<button type="button" (click)="reset()">Reset
+</button>
+<p>Summary: {{data$ | async}}</p>
+</form>
+

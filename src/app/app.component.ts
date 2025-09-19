@@ -35,6 +35,8 @@ import { UserStatusComponentComponent } from './user-status-component/user-statu
 import { AuthServiceService } from './services/auth-service.service';
 import { PipesComponent } from './pipes/pipes/pipes.component';
 import { ValuesListComponent } from './values-list/values-list.component';
+import { FormComponent } from './formularze/form/form.component';
+import { ReactiveFormComponent } from './formularze/reactive-form/reactive-form.component';
 
 type User = {
   id: string;
@@ -60,6 +62,8 @@ type Box = {
     UserStatusComponentComponent,
     PipesComponent,
     ValuesListComponent,
+    FormComponent,
+    ReactiveFormComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

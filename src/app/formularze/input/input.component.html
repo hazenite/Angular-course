@@ -1,0 +1,14 @@
+<div [formGroup] = "group">
+
+<input [type]="type" [name] = "name" [formControlName]="name">
+
+@if(isInvaild()) {
+    @if(hasError('required'))
+    {
+        <p> This field is required</p>
+    }
+    @if(hasError('minlength')){
+        <p>Required minimum 3 characters</p>
+    }
+    }
+</div>
