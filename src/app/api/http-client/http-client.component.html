@@ -1,0 +1,9 @@
+<input type = "text" [formControl]="search">
+
+<ul>
+    @for(show of (shows$ | async); track show.id)
+    {
+        <li> {{show.name}}</li>
+
+    }
+</ul>

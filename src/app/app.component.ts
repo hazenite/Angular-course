@@ -37,6 +37,7 @@ import { PipesComponent } from './pipes/pipes/pipes.component';
 import { ValuesListComponent } from './values-list/values-list.component';
 import { FormComponent } from './formularze/form/form.component';
 import { ReactiveFormComponent } from './formularze/reactive-form/reactive-form.component';
+import { HttpClientComponent } from './api/http-client/http-client.component';
 
 type User = {
   id: string;
@@ -64,6 +65,7 @@ type Box = {
     ValuesListComponent,
     FormComponent,
     ReactiveFormComponent,
+    HttpClientComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
