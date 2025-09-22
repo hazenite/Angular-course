@@ -38,6 +38,7 @@ import { ValuesListComponent } from './values-list/values-list.component';
 import { FormComponent } from './formularze/form/form.component';
 import { ReactiveFormComponent } from './formularze/reactive-form/reactive-form.component';
 import { HttpClientComponent } from './api/http-client/http-client.component';
+import { IpComponent } from './ip/ip.component';
 
 type User = {
   id: string;
@@ -66,6 +67,7 @@ type Box = {
     FormComponent,
     ReactiveFormComponent,
     HttpClientComponent,
+    IpComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
