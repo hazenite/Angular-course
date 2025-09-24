@@ -19,4 +19,8 @@ export class IpComponent {
       .pipe(map((data) => data.ip))
       .subscribe((value) => this.ip$.set(value));
   }
+
+  reset(){
+    this.ip$.set('')
+  }
 }
