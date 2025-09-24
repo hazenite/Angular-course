@@ -1,19 +1,23 @@
-import { HttpEvent, HttpInterceptorFn } from '@angular/common/http';
+import { HttpInterceptorFn } from '@angular/common/http';
 import { of, tap } from 'rxjs';
-const cache = new Map<string, HttpEvent<unknown>>();
+import { CacheService } from './services/cache.service';
+import { inject } from '@angular/core';
 
 export const cacheInterceptor: HttpInterceptorFn = (req, next) => {
-const { url } = req;
-const valueFromCache = cache.get(url)
+  const { url } = req;
 
-if(valueFromCache) {
-  console.log(`reading cache for ${url}`)
-return of(valueFromCache)
-}
-  return next(req).pipe(tap((Response) => {
-      console.log(`set cache for ${url}`)
+  const cache = inject(CacheService);
+  const valueFromCache = cache.read(url);
 
-    cache.set(req.url, Response)
-  })
+  if (valueFromCache) {
+    console.log(`reading cache for ${url}`);
+    return of(valueFromCache);
+  }
+  return next(req).pipe(
+    tap((Response) => {
+      console.log(`set cache for ${url}`);
+
+      cache.save(req.url, Response);
+    }),
   );
-}
+};

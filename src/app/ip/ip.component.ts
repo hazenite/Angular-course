@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ApiInterService } from '../services/api-inter.service';
 import { AsyncPipe } from '@angular/common';
 import { map } from 'rxjs';
+import { CacheService } from '../services/cache.service';
 
 @Component({
   selector: 'app-ip',
@@ -11,6 +12,7 @@ import { map } from 'rxjs';
 })
 export class IpComponent {
   private api = inject(ApiInterService);
+  private cache = inject(CacheService);
   ip$ = signal<string>('');
 
   refresh() {
@@ -20,7 +22,11 @@ export class IpComponent {
       .subscribe((value) => this.ip$.set(value));
   }
 
-  reset(){
-    this.ip$.set('')
+  reset() {
+    this.ip$.set('');
+  }
+
+  clearCache() {
+    this.cache.reset();
   }
 }
