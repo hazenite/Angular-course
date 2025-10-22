@@ -1,6 +1,13 @@
 {
-    "element": {
-        "id": 1,
-        "title": "The stranger"
+  "users": [
+    {
+      "email": "a@a.pl",
+      "password": "$2a$10$Lzw4Cc3fAH0wx74LnaSt2OUkTuSW/WGku.dS5VdEdiKRt48IZAKAm",
+      "id": 1
     }
+  ],
+  "element": {
+    "id": 1,
+    "title": "The stranger"
+  }
 }

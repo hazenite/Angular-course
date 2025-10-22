@@ -24,4 +24,12 @@ export class ApiService {
       .get<R>(`${this.API_URL}${url}`)
       .pipe(retry(3), catchError(this.handleError<R>()));
   }
+
+  post<P,R>(url: string, payload: P) {
+    return this.http.post<R>(url, payload, {
+      headers: {
+        'Context-Type': 'application/json'
+      }
+    })
+  }
 }

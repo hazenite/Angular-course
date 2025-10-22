@@ -39,6 +39,7 @@ import { FormComponent } from './formularze/form/form.component';
 import { ReactiveFormComponent } from './formularze/reactive-form/reactive-form.component';
 import { HttpClientComponent } from './api/http-client/http-client.component';
 import { IpComponent } from './ip/ip.component';
+import { UserComponent } from './user/user.component';
 
 type User = {
   id: string;
@@ -68,6 +69,7 @@ type Box = {
     ReactiveFormComponent,
     HttpClientComponent,
     IpComponent,
+    UserComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -143,7 +145,7 @@ export class AppComponent implements AfterViewInit {
   title = 'agnular-course';
 
   adults$ = this.getUser().pipe(
-    map((users) => users.filter((user) => user.age >= 18))
+    map((users) => users.filter((user) => user.age >= 18)),
   );
 
   ifAdults$ = this.getUser().pipe(
@@ -151,8 +153,8 @@ export class AppComponent implements AfterViewInit {
       users.map((user) => ({
         ...user,
         age: user.age >= 18,
-      }))
-    )
+      })),
+    ),
   );
 
   logOut() {
@@ -196,7 +198,7 @@ export class AppComponent implements AfterViewInit {
 
   constructor(private authSevice: AuthServiceService) {
     this.userStatus = computed(() =>
-      this.authSevice.isAuthenticated() ? 'autorized' : 'unautorized'
+      this.authSevice.isAuthenticated() ? 'autorized' : 'unautorized',
     );
     // this.value2 = this.fooService.getValue();
     // effect((onCleanup) => {
@@ -232,11 +234,11 @@ export class AppComponent implements AfterViewInit {
     merge(
       fromEvent(this.firstBtn.nativeElement, 'click'),
       fromEvent(this.secondBtn.nativeElement, 'click'),
-      fromEvent(this.thirdBtn.nativeElement, 'click')
+      fromEvent(this.thirdBtn.nativeElement, 'click'),
     )
       .pipe(
         debounceTime(1000),
-        mergeMap((_) => this.getData2(Math.round(Math.random() * 100)))
+        mergeMap((_) => this.getData2(Math.round(Math.random() * 100))),
       )
       .subscribe(console.log);
   }
@@ -255,7 +257,7 @@ export class AppComponent implements AfterViewInit {
   getData(id: number): Observable<string> {
     return of(id).pipe(
       delay(Math.round(Math.random() * 2000)),
-      map((id) => `Resouce #${id}`)
+      map((id) => `Resouce #${id}`),
     );
   }
   ngOnInit(): void {

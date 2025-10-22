@@ -6,7 +6,6 @@ import {
   Output,
 } from '@angular/core';
 import { User, UserNameChangeEvent } from '../types/users';
-import { SingleComponent } from '../single/single.component';
 import { UserslistComponent } from '../userslist/userslist.component';
 
 @Component({
@@ -36,7 +35,7 @@ export class UsersComponent {
 
   remvoveUser() {
     this.usersTable = this.usersTable.filter(
-      (_, index) => index !== this.usersTable.length - 1
+      (_, index) => index !== this.usersTable.length - 1,
     );
   }
 
