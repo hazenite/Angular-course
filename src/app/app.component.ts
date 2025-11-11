@@ -4,6 +4,7 @@ import {
   Component,
   computed,
   ElementRef,
+  inject,
   Signal,
   signal,
   viewChild,
@@ -40,6 +41,7 @@ import { ReactiveFormComponent } from './formularze/reactive-form/reactive-form.
 import { HttpClientComponent } from './api/http-client/http-client.component';
 import { IpComponent } from './ip/ip.component';
 import { UserComponent } from './user/user.component';
+import { RouterOutlet, RouterLinkWithHref, Router } from '@angular/router';
 
 type User = {
   id: string;
@@ -70,6 +72,8 @@ type Box = {
     HttpClientComponent,
     IpComponent,
     UserComponent,
+    RouterOutlet,
+    RouterLinkWithHref,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -143,6 +147,14 @@ export class AppComponent implements AfterViewInit {
   shouldBeVisable = false;
   values: number[] = [1, 2, 3, 4, 5];
   title = 'agnular-course';
+
+  private router = inject(Router);
+  
+  redirectWithDelay(productId: string) {
+    setTimeout(() => {
+      this.router.navigate(['/product', productId]);
+    }, 2000);
+  }
 
   adults$ = this.getUser().pipe(
     map((users) => users.filter((user) => user.age >= 18)),

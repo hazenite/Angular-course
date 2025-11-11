@@ -1,7 +1,24 @@
-<app-user>
-    
-</app-user>
+<h1> Hello World </h1>
 
+<nav>
+    <ul>
+        <li>
+            <a routerLink="home"> Home </a>
+        </li>
+         <li>
+            <a routerLink="dashboard"> Dashboard </a>
+        </li>
+      <li>
+            <a routerLink="product"> Product </a>
+        </li>
+           <li>
+            <a routerLink="product/list"> Products list </a>
+        </li>
+    </ul>
+</nav>
+
+<button (click)="redirectWithDelay('pikachu')"> Redirect</button>
+<router-outlet></router-outlet>
 
 
 <!-- <app-http-client></app-http-client> -->
@@ -343,3 +360,6 @@
     @loading (minimum 1s){
         <p> Iam a loading message </p>
     } -->
+
+
+
