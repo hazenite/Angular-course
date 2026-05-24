@@ -8,6 +8,11 @@ import { ErrorComponentComponent } from './error-component/error-component.compo
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { fooResolver } from './foo.resolver';
+import { authGuard } from './auth-guard';
+import { ProductTest } from './product-test/product-test';
+import { testGuard } from './test-guard';
+import { TestA } from './test-a/test-a';
+import { TestB } from './test-b/test-b';
 
 export const routes: Routes = [
   {
@@ -16,38 +21,61 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    canMatch: [authGuard],
+    loadChildren: () =>
+      import('./components/dashboard/dashboard.routes').then(
+        (mod) => mod.DASHBOARD_ROUTES,
+      ),
     resolve: {
-      foo: fooResolver
-    }
+      foo: fooResolver,
+    },
   },
   {
     path: 'product',
-    component: ProductComponent,
+    // component: ProductComponent,
+    loadComponent: () =>
+      import('./components/product/product.component').then(
+        (c) => c.ProductComponent,
+      ),
     children: [
       {
         path: 'list',
         component: ProductListComponent,
       },
       {
-        path: ':productId',
-        component: ProductDetailsComponent,
+        path: '',
+        canActivateChild: [authGuard],
+        children: [
+          {
+            path: 'test',
+            component: ProductTest,
+          },
+          {
+            path: ':productId',
+            component: ProductDetailsComponent,
+          },
+        ],
       },
       {
         path: '',
-        redirectTo: '/list',
+        redirectTo: 'list',
         pathMatch: 'full',
       },
     ],
   },
   {
+    path: 'test',
+    canMatch: [testGuard],
+    component: TestA,
+  },
+  {
+    path: 'test',
+    component: TestB,
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full',
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
   },
   {
     path: '**',

@@ -1,10 +1,13 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private _isAuth = signal<boolean>(false);
+  isAuth = this._isAuth.asReadonly();
+
   api = inject(ApiService);
   acessToken: string = '';
   register() {

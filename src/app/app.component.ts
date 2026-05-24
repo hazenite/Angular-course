@@ -1,22 +1,18 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
   inject,
   Signal,
   signal,
-  viewChild,
   ViewChild,
   WritableSignal,
 } from '@angular/core';
 import { Coords } from './types';
 import {
-  AsyncSubject,
   debounceTime,
   delay,
-  exhaustMap,
   fromEvent,
   interval,
   map,
@@ -26,22 +22,15 @@ import {
   of,
   Subject,
   Subscription,
-  take,
   takeUntil,
 } from 'rxjs';
-import { FooService } from './foo.service';
-import { FooComponent } from './foo/foo.component';
-import { PatternGeneratorComponent } from './pattern-generator/pattern-generator.component';
-import { UserStatusComponentComponent } from './user-status-component/user-status-component.component';
 import { AuthServiceService } from './services/auth-service.service';
-import { PipesComponent } from './pipes/pipes/pipes.component';
-import { ValuesListComponent } from './values-list/values-list.component';
-import { FormComponent } from './formularze/form/form.component';
-import { ReactiveFormComponent } from './formularze/reactive-form/reactive-form.component';
-import { HttpClientComponent } from './api/http-client/http-client.component';
-import { IpComponent } from './ip/ip.component';
-import { UserComponent } from './user/user.component';
-import { RouterOutlet, RouterLinkWithHref, Router } from '@angular/router';
+import {
+  RouterOutlet,
+  RouterLinkWithHref,
+  Router,
+  RouterLink,
+} from '@angular/router';
 
 type User = {
   id: string;
@@ -61,22 +50,10 @@ type Box = {
 
 @Component({
   selector: 'app-root',
-  imports: [
-    FooComponent,
-    PatternGeneratorComponent,
-    UserStatusComponentComponent,
-    PipesComponent,
-    ValuesListComponent,
-    FormComponent,
-    ReactiveFormComponent,
-    HttpClientComponent,
-    IpComponent,
-    UserComponent,
-    RouterOutlet,
-    RouterLinkWithHref,
-  ],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  standalone: true,
   // providers: [FooService],
 })
 export class AppComponent implements AfterViewInit {
@@ -149,7 +126,7 @@ export class AppComponent implements AfterViewInit {
   title = 'agnular-course';
 
   private router = inject(Router);
-  
+
   redirectWithDelay(productId: string) {
     setTimeout(() => {
       this.router.navigate(['/product', productId]);
